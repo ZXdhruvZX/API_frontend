@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import JsonInputForm from './components/JsonInputForm';
 
-function App() {
+import ResponseFilter from './components/ResponseFilter';
+
+const App = () => {
+  const [apiResponse, setApiResponse] = useState(null);
+
+  const handleApiResponse = (response) => {
+    setApiResponse(response);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>JSON Processor</h1>
+      <JsonInputForm onApiResponse={handleApiResponse} />
+      {apiResponse && <ResponseFilter apiResponse={apiResponse} />}
     </div>
   );
-}
+};
 
 export default App;
